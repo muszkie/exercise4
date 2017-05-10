@@ -1,8 +1,5 @@
 apply plugin: 'java'
 
-sourceCompatibility = 1.8
-version = '1.0'
-
 repositories {
     mavenCentral()
 }
@@ -34,7 +31,6 @@ ext {
         ]
 	]
 }
-
 dependencies {
     compile "javax:javaee-api:7.0"
     compile libraries.spring
