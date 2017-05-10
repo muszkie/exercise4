@@ -14,7 +14,7 @@ public class Reciver {
 
 	Session session;
 	Topic queue;
-	MessageConsumer producer;
+	TopicSubscriber producer;
 	Connection connection = null;
 	ActiveMQConnectionFactory conn;
 	private final String queueName;
@@ -32,10 +32,11 @@ public class Reciver {
 	private void makeConnection() {
 		try {
 			conn = new ActiveMQConnectionFactory("tcp://localhost:61616");
+			conn.setClientID("clientID");
 			connection = conn.createConnection();
 			session = connection.createSession(false, Session.AUTO_ACKNOWLEDGE);
 			queue = session.createTopic(queueName);
-			producer = session.createConsumer(queue);
+			producer = session.createDurableSubscriber(queue,"testSub");
 			producer.setMessageListener(new MessageListener() {
 
 				@Override
@@ -64,7 +65,7 @@ public class Reciver {
 		} catch (JMSException e) {
 			log.error("failed");
 		} finally {
-			waitMilliSeconds(10000L);
+			waitMilliSeconds(100000L);
 			log.info("Recived " + list.size() + " messages");
 			closeConnection();
 			System.exit(0);
