@@ -1,9 +1,10 @@
 apply plugin: 'java'
+apply plugin: 'application'
 
 repositories {
     mavenCentral()
 }
-
+mainClassName = "TextMessageSender.Main"
 ext {
     springVersion = '4.2.5.RELEASE'
     activemqVersion = '5.13.2'

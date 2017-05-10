@@ -1,6 +1,5 @@
 import org.junit.Test;
 
-import TextMessageSender.Producer;
 
 import static org.junit.Assert.*;
 
@@ -14,11 +13,5 @@ public class LibraryTest {
     @Test public void testSomeLibraryMethod() {
         Library classUnderTest = new Library();
         assertTrue("someLibraryMethod should return 'true'", classUnderTest.someLibraryMethod());
-    }
-    @Test public void senderTest() {
-		Producer sender = new Producer();
-		sender.sendTextMessages();;
-		sender.closeConnection();
-		System.exit(0);
     }
 }
