@@ -13,7 +13,7 @@ import org.slf4j.LoggerFactory;
 public class Reciver {
 
 	Session session;
-	Queue queue;
+	Topic queue;
 	MessageConsumer producer;
 	Connection connection = null;
 	ActiveMQConnectionFactory conn;
@@ -23,7 +23,7 @@ public class Reciver {
 	private static final Logger log = LoggerFactory.getLogger(Reciver.class);
 
 	public Reciver() {
-		this.queueName = "MUSZKIE.QUEUE";
+		this.queueName = "MUSZKIE.TOPIC";
 		makeConnection();
 
 	}
@@ -34,7 +34,7 @@ public class Reciver {
 			conn = new ActiveMQConnectionFactory("tcp://localhost:61616");
 			connection = conn.createConnection();
 			session = connection.createSession(false, Session.AUTO_ACKNOWLEDGE);
-			queue = session.createQueue(queueName);
+			queue = session.createTopic(queueName);
 			producer = session.createConsumer(queue);
 			producer.setMessageListener(new MessageListener() {
 
