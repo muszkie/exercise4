@@ -1,7 +1,5 @@
 import org.junit.Test;
 
-import TextMessageReciver.Reciver;
-
 import static org.junit.Assert.*;
 
 /*
@@ -14,11 +12,5 @@ public class LibraryTest {
     @Test public void testSomeLibraryMethod() {
         Library classUnderTest = new Library();
         assertTrue("someLibraryMethod should return 'true'", classUnderTest.someLibraryMethod());
-    }
-    @Test public void senderTest() {
-		Reciver reciver = new Reciver();
-		reciver.recive();
-		reciver.closeConnection();
-		System.exit(0);
     }
 }
