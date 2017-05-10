@@ -10,7 +10,7 @@ import org.slf4j.LoggerFactory;
 public class Producer {
 
 	Session session;
-	Queue queue;
+	Topic queue;
 	MessageProducer producer;
 	Connection connection = null;
 	ActiveMQConnectionFactory conn;
@@ -19,7 +19,7 @@ public class Producer {
 	private static final Logger log = LoggerFactory.getLogger(Producer.class);
 
 	public Producer() {
-		this.queueName = "MUSZKIE.QUEUE";
+		this.queueName = "MUSZKIE.TOPIC";
 		makeConnection();
 
 	}
@@ -30,7 +30,7 @@ public class Producer {
 			conn = new ActiveMQConnectionFactory("tcp://localhost:61616");
 			connection = conn.createConnection();
 			session = connection.createSession(false, Session.AUTO_ACKNOWLEDGE);
-			queue = session.createQueue(queueName);
+			queue = session.createTopic(queueName);
 			producer = session.createProducer(queue);
 
 		} catch (JMSException e) {
